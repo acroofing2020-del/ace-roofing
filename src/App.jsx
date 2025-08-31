@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
-import { Phone, Mail, MapPin, Wrench, Home, Sun, Droplets, CloudLightning, Hammer, Star, Check } from "lucide-react";
+import { Phone, Mail, MapPin, Wrench, Home, Sun, Droplets, CloudLightning, Hammer, Star } from "lucide-react";
 import { motion } from "framer-motion";
 
 const BRAND = {
@@ -9,10 +9,6 @@ const BRAND = {
   phone: "07383009362",
   email: "acroofing2020@gmail.com",
   serviceAreas: ["Kent", "South West London"],
-  hero: {
-    headline: "All types of roofing covered — big or small",
-    sub: "Trusted local roofers for everything from minor repairs to full new builds.",
-  },
 };
 
 const SERVICES = [
@@ -20,7 +16,7 @@ const SERVICES = [
   { icon: <Home />, title: "Complete New Roofs", desc: "Full roof builds with high-quality materials and workmanship." },
   { icon: <Sun />, title: "Flat Roofing", desc: "EPDM, fibreglass, and felt systems with long-lasting durability." },
   { icon: <Droplets />, title: "Guttering & Fascias", desc: "Installation and maintenance of gutters, soffits & fascias." },
-  { icon: <CloudLightning />, title: "Roof Inspections", desc: "Comprehensive surveys with clear recommendations." },
+  { icon: <CloudLightning />, title: "Roof Inspections", desc: "Comprehensive surveys with photos and recommendations." },
   { icon: <Hammer />, title: "Maintenance Services", desc: "From moss removal to preventative treatments." },
 ];
 
@@ -37,14 +33,32 @@ export default function App() {
     <>
       <Helmet>
         <title>{BRAND.name} | Roofing in Kent & South West London</title>
-        <meta name="description" content="From small roof repairs to complete new roofs, Ace Roofing covers all of Kent and South West London." />
+        <meta
+          name="description"
+          content="Ace Roofing is a family-run roofing company covering Kent & South West London. From small repairs to complete new roofs, we deliver quality workmanship and trusted service."
+        />
       </Helmet>
 
       {/* HERO */}
       <section className="bg-teal-700 text-white text-center py-20">
-        <h1 className="text-4xl font-bold mb-4">{BRAND.hero.headline}</h1>
-        <p className="mb-6">{BRAND.hero.sub}</p>
-        <a href="#quote" className="bg-amber-500 text-black px-6 py-3 rounded-lg font-semibold">Get a free quote</a>
+        <h1 className="text-4xl font-bold mb-4">All types of roofing covered — big or small</h1>
+        <p className="mb-6">
+          From emergency repairs to full roof replacements—serving Kent & South West London with trusted, professional workmanship.
+        </p>
+        <a href="#quote" className="bg-amber-500 text-black px-6 py-3 rounded-lg font-semibold">
+          Get a free quote
+        </a>
+      </section>
+
+      {/* WHY CHOOSE US */}
+      <section className="py-16 px-6 max-w-4xl mx-auto text-center">
+        <h2 className="text-3xl font-bold mb-6">Why Choose {BRAND.name}?</h2>
+        <ul className="text-gray-700 space-y-3">
+          <li>✔ Family-run business with years of roofing experience</li>
+          <li>✔ Fully insured and offering free, no-obligation estimates</li>
+          <li>✔ Everything from minor repairs to complete roof replacements</li>
+          <li>✔ Trusted materials and satisfaction guaranteed</li>
+        </ul>
       </section>
 
       {/* SERVICES */}
@@ -69,7 +83,9 @@ export default function App() {
             <div key={i} className="bg-white p-6 rounded-xl shadow">
               <p className="mb-3 italic">“{t.text}”</p>
               <div className="flex items-center gap-1 text-amber-500">
-                {[...Array(t.rating)].map((_, j) => <Star key={j} size={16} />)}
+                {[...Array(t.rating)].map((_, j) => (
+                  <Star key={j} size={16} />
+                ))}
               </div>
               <p className="mt-2 font-semibold">- {t.name}</p>
             </div>
@@ -82,13 +98,23 @@ export default function App() {
         <h2 className="text-3xl font-bold text-center mb-10">Get a Free Quote</h2>
         {!submitted ? (
           <form
-            onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}
+            onSubmit={(e) => {
+              e.preventDefault();
+              setSubmitted(true);
+            }}
             className="max-w-xl mx-auto space-y-4"
           >
             <input className="w-full border p-3 rounded" placeholder="Your Name" required />
             <input className="w-full border p-3 rounded" type="email" placeholder="Your Email" required />
-            <textarea className="w-full border p-3 rounded" rows="4" placeholder="Tell us about your roofing needs" required></textarea>
-            <button type="submit" className="bg-teal-700 text-white px-6 py-3 rounded-lg">Submit</button>
+            <textarea
+              className="w-full border p-3 rounded"
+              rows="4"
+              placeholder="Tell us about your roofing needs"
+              required
+            ></textarea>
+            <button type="submit" className="bg-teal-700 text-white px-6 py-3 rounded-lg">
+              Submit
+            </button>
           </form>
         ) : (
           <p className="text-center text-green-600 font-bold">Thank you! We'll get back to you soon.</p>
